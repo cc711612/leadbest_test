@@ -18,7 +18,7 @@ class InitializationBalance extends Migration
     {
         Schema::connection($this->connection)->create($this->table, function (Blueprint $table) {
             $table->integerIncrements('id')->unsigned()->commit('流水號');
-            $table->unsignedInteger('user_id')->comment('users 的流水號');
+            $table->unsignedInteger('user_id')->unique()->comment('users 的流水號');
             $table->decimal('balance')->comment('當前存款金額');
             $table->timestamps();
             $table->foreign('user_id')->on('users')->references('id');
